@@ -27,4 +27,4 @@ The usage is very simple, first of all register or log in, then you can see the 
 ## Contact
 Email: rey.hossa.rh@gmail.com
 
-Project link: https://github.com/rey-hossa/CryptoCoin.git
+Project link: https://github.com/rey-hossa/FullstackProject.git
