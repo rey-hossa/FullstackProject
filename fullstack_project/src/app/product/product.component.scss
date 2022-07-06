@@ -1,0 +1,31 @@
+
+
+.edit_button, .delete_button{
+    font-size:small;
+    height: 25px;
+    width: 30px;
+    padding: 0;
+}
+
+.delete_button{
+    margin-left: 5px;
+}
+
+.logout{
+    cursor: pointer;
+}
+
+
+
+
+@media only screen and (max-width: 450px) {
+    .table_container{
+    }
+
+    .button_div{}
+
+    .description{
+        display: none;
+    }
+}
+
