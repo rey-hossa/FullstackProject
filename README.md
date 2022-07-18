@@ -15,6 +15,7 @@ Open the "fullstack_project" file and in the terminal run `nmp install` then run
 To Starting using this Application locally download the project and rename the ".env.sample" file in ".env" in the "laravel_api" file and edit this with your database name. Then you can open the "laravel_api" file in your favourite IDE or editor, open the terminal and run `php artisan serve` command.
 
 ### fullstack.sql -- Database
+You can import the database with this file
 
 ## Tools Used
 
