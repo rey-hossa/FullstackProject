@@ -2,7 +2,7 @@
 
 ![Alt text](image.png "image")
 
-This project is a fullstack web app, and is practically an ecommerce back office.
+This project is basically a kind of prototype of a simple ecommerce with also backoffice.
 
 ## Organization and Getting Started
 
@@ -30,7 +30,7 @@ JWT
 
 ## Usage
 
-The usage is very simple, first of all register or log in, then you can see the products, and you can add new product or modify them, or even delete them.
+The usage is very simple, first of all register or log in, then you can see the products, you can add it to cart, you can order them and in the backoffice you can add new product or modify them, or even delete them.
 
 ## Contact
 Email: rey.hossa.rh@gmail.com
