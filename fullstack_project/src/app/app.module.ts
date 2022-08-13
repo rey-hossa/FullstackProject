@@ -20,6 +20,12 @@ import { ProductComponent } from './product/product.component';
 
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HeaderComponent } from './header/header.component';
+import { EcommerceComponent } from './ecommerce/ecommerce.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
+import { PopupComponent } from './popup/popup.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 const routes:Routes = [
@@ -33,6 +39,18 @@ const routes:Routes = [
 {
   path: 'login', component:LoginComponent
 },
+{
+  path: 'ecommerce', component:EcommerceComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'cart', component:CartComponent,
+  canActivate: [AuthGuard]
+},
+{
+  path: 'order', component:OrderComponent,
+  canActivate: [AuthGuard]
+},
 
 
 ];
@@ -43,6 +61,12 @@ const routes:Routes = [
     LoginComponent,
     RegisterComponent,
     ProductComponent,
+    HeaderComponent,
+    EcommerceComponent,
+    CartComponent,
+    OrderComponent,
+    PopupComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

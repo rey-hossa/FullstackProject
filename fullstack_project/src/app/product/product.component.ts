@@ -1,13 +1,14 @@
 import { Component, OnInit, TemplateRef  } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import { IProduct } from './product';
+import { HeaderComponent } from './../header/header.component';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormControl, Validators } from '@angular/forms';
 
 
 import { Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-product',
@@ -28,8 +29,7 @@ export class ProductComponent implements OnInit {
 
   token:any;
   userData: any;
-  email:any;
-  
+  email:any;  
 
   constructor(private service:ProductService, private modalService: BsModalService, private router: Router) { }
 
@@ -52,19 +52,19 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.token = localStorage.getItem('token');
-    this.userData = jwt_decode(this.token);
-    this.email = this.userData.email;
-    console.log(this.token);
-    console.log(this.userData.email);
+    // this.token = localStorage.getItem('token');
+    // this.userData = jwt_decode(this.token);
+    // this.email = this.userData.email;
+    // console.log(this.token);
+    // console.log(this.userData.email);
 
     this.getList();
   }
 
-  logout(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
+  // logout(){
+  //   localStorage.removeItem('token');
+  //   this.router.navigate(['/login']);
+  // }
 
   getList(){
     this.service.list()

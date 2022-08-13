@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProductController extends Controller
+class CartController extends Controller
 {
-
-    // public function custom()
-    // {
-    //     //$products = DB::select('select * from products');
-    //     return DB::select('select * from products where price=666');
-
-    // }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Cart::all();
     }
 
     /**
@@ -44,7 +36,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return Product::create($request->all());
+        return Cart::create($request->all());
     }
 
     /**
@@ -55,16 +47,34 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+
+        $cartItems = DB::select('
+            SELECT carts.id, products.id as product, products.name , products.price, carts.quantity 
+            FROM `carts` 
+            JOIN products ON carts.product_id = products.id
+            WHERE carts.user_id ='. $id . '
+        ');
+        
+        // $cartItems = DB::table('carts')
+        //     ->select('products.name , products.price, carts.quantity')
+        //     ->join('products', 'carts.product_id', '=', 'products.id')
+        //     ->where('carts.user_id', $id)
+        //     ->get();
+
+        // $cartItems = DB::table('carts')
+        //         ->where('user_id', '=', $id)
+        //         ->get();
+
+        return $cartItems;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -78,8 +88,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
+        $product = Cart::find($id);
         $product->update($request->all());
+
         return $product;
     }
 
@@ -91,6 +102,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+        return Cart::destroy($id);
     }
 }

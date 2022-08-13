@@ -61,6 +61,7 @@ class UserController extends Controller
             'email' => $user->email
         ])->attempt($credentials);
 
+        $response['user'] = $user->id;
         $response['status'] = 1;
         $response['data'] = $data;
         $response['code'] = 200;

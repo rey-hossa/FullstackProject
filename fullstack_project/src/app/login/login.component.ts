@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   data:any;
   token: any;
+  user: any;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService, private toastr: ToastrService, private router:Router) { }
 
@@ -49,8 +50,10 @@ export class LoginComponent implements OnInit {
       console.log(res);
       if(this.data.status === 1){
         this.token = this.data.data.token;
+        this.user = this.data.user;
         localStorage.setItem('token', this.token);
-        this.router.navigate(['/']);
+        localStorage.setItem('user', this.user);
+        this.router.navigate(['/ecommerce']);
         this.toastr.success(JSON.stringify(this.data.message), JSON.stringify(this.data.code), {
           timeOut: 2000,
           progressBar: true

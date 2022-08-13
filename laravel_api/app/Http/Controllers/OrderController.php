@@ -2,20 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
-
-    // public function custom()
-    // {
-    //     //$products = DB::select('select * from products');
-    //     return DB::select('select * from products where price=666');
-
-    // }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Order::all();
     }
 
     /**
@@ -44,7 +37,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return Product::create($request->all());
+        return Order::create($request->all());
     }
 
     /**
@@ -55,16 +48,24 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+
+        $orderItems = DB::select('
+            SELECT orders.id, products.id as product, products.name , products.price, orders.quantity, orders.order_date 
+            FROM `orders` 
+            JOIN products ON orders.product_id = products.id
+            WHERE orders.user_id ='. $id . '
+        ');
+
+        return $orderItems;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Order $order)
     {
         //
     }
@@ -73,14 +74,12 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        return $product;
+        //
     }
 
     /**
@@ -91,6 +90,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+        return Order::destroy($id);
     }
 }
